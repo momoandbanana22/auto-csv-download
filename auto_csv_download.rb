@@ -21,7 +21,9 @@ puts 'firefoxを起動してbitbankの資産ページを開きます・・・'
 driver = Selenium::WebDriver.for :firefox, profile: profile
 driver.get 'https://bitbank.cc/app/account/trade_history'
 
-puts 'ログインして資産のページが表示されたら、取引履歴をダウンロードするので、何かキーを押してください・・・'
+puts 'ログインページが表示されたらログインしてください。'
+puts '資産のページが表示されたら、何かキーを押してください・・・'
+puta '自動で、取引履歴をダウンロードします。'
 gets
 
 loop do
