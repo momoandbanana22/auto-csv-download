@@ -25,17 +25,18 @@ puts 'ログインして資産のページが表示されたら、取引履歴�
 gets
 
 loop do
-  sleep(60)
   csvdownloadlink = driver.find_element(:xpath, '/html/body/app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
-  sleep(60)
   puts 'ダウンロードリンクをクリックします・・・'
   csvdownloadlink.click
-  puts 'ダウンロードリンクをクリックしました'
+  puts 'ダウンロードリンクをクリックしました。（ダウンロードが終わるまで）３分待ちます・・・'
+  sleep(180) # 3 minutes
 
-  puts 'ページを再表示します。３分ごと１時間、合計２０回。'
-  (1..20).each do |cnt|
-    puts(cnt)
+  puts 'ページを再表示します。３分ごと１時間、合計１９回。（クリック後の３分を含めて２０回＝１時間）'
+  (1..2).each do |cnt|
+    print(cnt)
+    print(' ')
     driver.navigate.refresh
     sleep(180) # 3 minutes
   end
+  puts ''
 end
