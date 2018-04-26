@@ -27,8 +27,13 @@ puts '自動で、取引履歴をダウンロードします。'
 gets
 
 loop do
-  csvdownloadlink = driver.find_element(:xpath, '/html/body/app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
-  csvdownloadlink.click
+  begin
+    csvdownloadlink = driver.find_element(:xpath, '/html/body/app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
+    csvdownloadlink.click
+  rescue => e
+    print('retry(' + e.to_s + ')')
+    redo
+  end
   puts 'ダウンロードリンクをクリックしました。（ダウンロードが終わるまで）３分待ちます・・・'
   sleep(180) # 3 minutes
 
@@ -36,7 +41,12 @@ loop do
   (1..19).each do |cnt|
     print(cnt)
     print(' ')
-    driver.navigate.refresh
+    begin
+      driver.navigate.refresh
+    rescue  => e
+      print('retry(' + e.to_s + ')')
+      redo
+    end
     sleep(180) # 3 minutes
   end
   puts ''
