@@ -1,5 +1,7 @@
+# auto_csv_download.rb 20180426.2027
 require 'selenium-webdriver'
 require 'pp'
+require 'date'
 
 profile = Selenium::WebDriver::Firefox::Profile.new
 
@@ -27,6 +29,8 @@ puts '自動で、取引履歴をダウンロードします。'
 gets
 
 loop do
+  print( DateTime.now )
+  puts 'ダウンロードリンクをクリックして、（ダウンロードが終わるまで）３分待ちます・・・'
   begin
     csvdownloadlink = driver.find_element(:xpath, '/html/body/app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
     csvdownloadlink.click
@@ -34,7 +38,6 @@ loop do
     print('retry(' + e.to_s + ')')
     redo
   end
-  puts 'ダウンロードリンクをクリックしました。（ダウンロードが終わるまで）３分待ちます・・・'
   sleep(180) # 3 minutes
 
   puts 'ページを再表示します。３分ごと１時間、合計１９回。（クリック後の３分を含めて２０回＝１時間）'
