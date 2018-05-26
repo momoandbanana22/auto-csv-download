@@ -1,4 +1,4 @@
-# auto_csv_download.rb 20180426.2027
+# auto_csv_download.rb 20180526.0939
 require 'selenium-webdriver'
 require 'pp'
 require 'date'
@@ -12,7 +12,7 @@ profile = Selenium::WebDriver::Firefox::Profile.new
 profile['browser.download.folderList'] = 2
 
 # ダウンロード先を指定 (バックスラッシュが二つ必要。環境によっては1つだけでいいかも)
-profile['browser.download.dir'] = 'C:\Users\YourName\Desktop'
+# profile['browser.download.dir'] = 'C:\Users\YourName\Desktop'
 
 # ファイルをポップアップボックスなしで自動的に保存 (CSVファイルの例)
 profile['browser.download.useDownloadDir'] = true
@@ -24,7 +24,7 @@ driver = Selenium::WebDriver.for :firefox, profile: profile
 driver.get 'https://bitbank.cc/app/account/trade_history'
 
 puts 'ログインページが表示されたらログインしてください。'
-puts '資産のページが表示されたら、何かキーを押してください・・・'
+puts '資産のページが表示されたら、Enterキーを押してください・・・'
 puts '自動で、取引履歴をダウンロードします。'
 gets
 
