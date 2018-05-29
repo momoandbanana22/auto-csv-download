@@ -1,4 +1,4 @@
-# auto_csv_download.rb 20180526.0939
+# auto_csv_download.rb 20180529.2034
 require 'selenium-webdriver'
 require 'pp'
 require 'date'
@@ -32,7 +32,7 @@ loop do
   print( DateTime.now )
   puts 'ダウンロードリンクをクリックして、（ダウンロードが終わるまで）３分待ちます・・・'
   begin
-    csvdownloadlink = driver.find_element(:xpath, '/html/body/app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
+    csvdownloadlink = driver.find_element(:xpath, '/html/body/baw-app/ng-component/mat-sidenav-container/mat-sidenav-content/div/ng-component/div/div/ng-component/div/div[6]/a')
     csvdownloadlink.click
   rescue => e
     print('retry(' + e.to_s + ')')
